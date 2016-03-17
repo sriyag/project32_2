@@ -16,12 +16,9 @@
         <marks> 1 </marks>
     </question>
     <question>
-        <tag>MCQ</tag>
-        <text> This is question 3 </text>
-        <optiona> This is option a</optiona>
-        <optionb> This is option b</optionb>
-        <optionc> This is option c</optionc>
-        <optiond> This is option d</optiond>
+        <tag>DRAW</tag>
+        <text> This is question 3. Draw a tree! </text>
+
         <marks> 1 </marks>
     </question>
     <question>

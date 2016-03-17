@@ -34,6 +34,7 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
 
     Fragment_MCQ fragment ;
     Fragment_ExplainText frag_explainText;
+    Fragment_Draw frag_draw;
 
     FragmentManager fragmentManager ;
     FragmentTransaction fragmentTransaction ;
@@ -58,7 +59,7 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
     String optionD ;
 
     String explainQuestion ;     //if tag is EXPLAIN_TEXT use these variables
-//    String explainAnswer;
+    String drawQuestion;
 
 
     @Override
@@ -241,9 +242,42 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
                         Toast.makeText(getApplicationContext(), "Null frag", Toast.LENGTH_SHORT).show();
                     }
 
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+//                changeDataForExplainText(explainQuestion);
+                break ;
 
+            case "DRAW":
+                current_children_childnodes = current_question.getChildNodes() ;
+                for(j=0;j<current_children_childnodes.getLength();j++)
+                {
+                    current_item = current_children_childnodes.item(j) ;
+                    if(current_item.getNodeName().equalsIgnoreCase("text"))
+                    {
+                        drawQuestion = current_item.getTextContent().toString();
+                    }
+                }
 
+                try {
+                    FragmentManager mManager = getFragmentManager();
+                    FragmentTransaction fTrans = mManager.beginTransaction();
 
+                    Fragment f = new Fragment_Draw();
+
+                    if(f != null && f instanceof Fragment_Draw) {
+                        Fragment_Draw fra = (Fragment_Draw) f;
+                        Bundle bundle_explain = new Bundle();
+                        bundle_explain.putString("question_draw", drawQuestion);
+                        frag_draw = new Fragment_Draw();
+                        frag_draw.setArguments(bundle_explain);
+                        fTrans.replace(R.id.linearLayout, frag_draw);
+                        fTrans.commit();
+                    }
+
+                    else {
+                        Toast.makeText(getApplicationContext(), "Null frag", Toast.LENGTH_SHORT).show();
+                    }
 
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
