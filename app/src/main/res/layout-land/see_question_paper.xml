@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/questionNumberList"
+        android:layout_width="201dp"
+        android:layout_height="309dp"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="100dp"
+        android:layout_height="41dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:text="Date"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/titleTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/date"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/date"
+        android:layout_toRightOf="@+id/questionNumberList"
+        android:layout_toStartOf="@+id/date"
+        android:gravity="center"
+        android:text="CourseName - ExamName"
+        android:textSize="20dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignEnd="@+id/date"
+        android:layout_alignRight="@+id/date"
+        android:layout_below="@+id/date"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/questionNumberList"
+        android:orientation="vertical">
+        <!--
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/scrollView">
+
+
+                    <fragment
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:name="com.example.hp1.exam_management.Fragment_MCQ"
+                        android:id="@+id/question_fragment" />
+
+        </ScrollView>
+            -->
+    </LinearLayout>
+
+
+</RelativeLayout>

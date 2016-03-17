@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <date> 26 January 2016</date>
+    <question>
+        <tag>MCQ</tag>
+        <text> This is question 1 </text>
+        <optiona> This is option a</optiona>
+        <optionb> This is option b</optionb>
+        <optionc> This is option c</optionc>
+        <optiond> This is option d</optiond>
+        <marks> 1 </marks>
+    </question>
+    <question>
+        <tag>EXPLAIN_TEXT</tag>
+        <text> This is question 2 </text>
+        <marks> 1 </marks>
+    </question>
+    <question>
+        <tag>MCQ</tag>
+        <text> This is question 3 </text>
+        <optiona> This is option a</optiona>
+        <optionb> This is option b</optionb>
+        <optionc> This is option c</optionc>
+        <optiond> This is option d</optiond>
+        <marks> 1 </marks>
+    </question>
+    <question>
+        <tag>MCQ</tag>
+        <text> This is question 4 </text>
+        <optiona> This is option a</optiona>
+        <optionb> This is option b</optionb>
+        <optionc> This is option c</optionc>
+        <optiond> This is option d</optiond>
+        <marks> 1 </marks>
+    </question>
+    <question>
+        <tag>MCQ</tag>
+        <text> This is question 5 </text>
+        <optiona> This is option a</optiona>
+        <optionb> This is option b</optionb>
+        <optionc> This is option c</optionc>
+        <optiond> This is option d</optiond>
+        <marks> 1 </marks>
+    </question>
+    <question>
+        <tag>MCQ</tag>
+        <text> This is question 6 </text>
+        <optiona> This is option a</optiona>
+        <optionb> This is option b</optionb>
+        <optionc> This is option c</optionc>
+        <optiond> This is option d</optiond>
+        <marks> 1 </marks>
+    </question>
+    <question>
+        <tag>MCQ</tag>
+        <text> This is question 7 </text>
+        <optiona> This is option a</optiona>
+        <optionb> This is option b</optionb>
+        <optionc> This is option c</optionc>
+        <optiond> This is option d</optiond>
+        <marks> 1 </marks>
+    </question>
+    <question>
+        <tag>MCQ</tag>
+        <text> This is question 8 </text>
+        <optiona> This is option a</optiona>
+        <optionb> This is option b</optionb>
+        <optionc> This is option c</optionc>
+        <optiond> This is option d</optiond>
+        <marks> 1 </marks>
+    </question>
+    <question>
+        <tag>MCQ</tag>
+        <text> This is question 9 </text>
+        <optiona> This is option a</optiona>
+        <optionb> This is option b</optionb>
+        <optionc> This is option c</optionc>
+        <optiond> This is option d</optiond>
+        <marks> 1 </marks>
+    </question>
+    <question>
+        <tag>MCQ</tag>
+        <text> This is question 10 </text>
+        <optiona> This is option a</optiona>
+        <optionb> This is option b</optionb>
+        <optionc> This is option c</optionc>
+        <optiond> This is option d</optiond>
+        <marks> 1 </marks>
+    </question>
+</resources>

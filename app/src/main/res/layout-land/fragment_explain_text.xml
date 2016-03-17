@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Explain what do you mean by ethical hacking course ?? Did you find it interesting ?"
+        android:textSize="25dp"
+        android:id="@+id/explain_question"
+        android:layout_weight="0.11" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:id="@+id/multilineAnswer"
+        android:layout_marginTop="10dp"
+        android:hint="Write your answer here"
+        android:textSize="25dp"
+        android:layout_weight="0.11"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/explain_question" />
+</RelativeLayout>

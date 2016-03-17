@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@android:color/holo_purple">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.01">
+
+
+        <ListView
+            android:layout_width="306dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/courseListView"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="COURSES"
+            android:id="@+id/textView8"
+            android:layout_marginTop="25dp"
+            android:textSize="35dp"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add a course"
+            android:id="@+id/addACourse"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/addingCourseEditText"
+            android:background="@android:color/holo_green_light"
+            android:layout_marginTop="20dp"
+            android:textSize="35dp"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD COURSE"
+            android:id="@+id/addCourse"
+            android:layout_gravity="right"
+            android:visibility="invisible"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="103dp"
+            android:layout_height="wrap_content"
+            android:text="BACK"
+            android:id="@+id/back"
+            android:layout_gravity="right" />
+    </LinearLayout>
+</LinearLayout>

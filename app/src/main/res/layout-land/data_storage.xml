@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data Storage and Networks"
+        android:id="@+id/textView1"
+        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test 1"
+        android:id="@+id/test1"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test 2"
+        android:id="@+id/test2"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/test1"
+        android:layout_alignStart="@+id/test1" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Compre"
+        android:id="@+id/compre"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/test2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:id="@+id/back"
+        android:layout_below="@+id/compre"
+        android:layout_marginRight="20dp"
+
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
