@@ -18,10 +18,6 @@ public class Fragment_Draw extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_draw, container, false) ;
 
-        DrawingView drawView;
-        drawView = (DrawingView) getActivity().findViewById(R.id.drawing);
-
-
         String quest = getArguments().getString("question_draw") ;
 
         TextView question = (TextView) view.findViewById(R.id.tv_drawfrag);
@@ -33,9 +29,4 @@ public class Fragment_Draw extends Fragment {
         return view ;
     }
 
-
-    public void mcqData(String a,String b,String c,String d,String e)
-    {
-
-    }
 }

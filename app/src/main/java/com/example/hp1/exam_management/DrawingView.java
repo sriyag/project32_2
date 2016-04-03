@@ -138,8 +138,6 @@ public class DrawingView extends View {
         return lastBrushSize;
     }
 
-    //called from MainActivity
-
 
     public void setErase(boolean isErase){
         //set erase true or false

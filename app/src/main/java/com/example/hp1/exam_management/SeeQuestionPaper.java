@@ -296,8 +296,8 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
 
         // It is coming till this method. Now I have to set the data in the fragment
         //Toast.makeText(this,a,Toast.LENGTH_LONG).show();
-       //Fragment_MCQ f = findViewById(R.)
-       //TextView t = (TextView) v.findViewById(R.id.textView2) ;
+        //Fragment_MCQ f = findViewById(R.)
+        //TextView t = (TextView) v.findViewById(R.id.textView2) ;
         //t.setText(a);
         //fragment.mcqData(a,b,c,d,e);
 
@@ -310,9 +310,9 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
     public void changeDataForExplainText(String a) {
 
 
-         //Fragment_ExplainText f = (Fragment_ExplainText) getFragmentManager().findFragmentById(R.id.question_fragment);
-         // Fragment_ExplainText f = (Fragment_ExplainText)fragment ;
-         //f.setExplainTextData(a);
+        //Fragment_ExplainText f = (Fragment_ExplainText) getFragmentManager().findFragmentById(R.id.question_fragment);
+        // Fragment_ExplainText f = (Fragment_ExplainText)fragment ;
+        //f.setExplainTextData(a);
 
     }
 }
