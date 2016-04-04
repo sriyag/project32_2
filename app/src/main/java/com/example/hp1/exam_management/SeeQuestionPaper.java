@@ -1,7 +1,6 @@
 package com.example.hp1.exam_management;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -33,8 +31,8 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
 
 
     Fragment_MCQ fragment ;
-    Fragment_ExplainText frag_explainText;
-    Fragment_Draw frag_draw;
+    Fragment_ExplainText fragment_explainText ;
+    Fragment_Draw fragment_draw ;
 
     FragmentManager fragmentManager ;
     FragmentTransaction fragmentTransaction ;
@@ -59,7 +57,8 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
     String optionD ;
 
     String explainQuestion ;     //if tag is EXPLAIN_TEXT use these variables
-    String drawQuestion;
+
+    String drawQuestion ;      //if Draw tag is used
 
 
     @Override
@@ -197,17 +196,7 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
                 fragment = new Fragment_MCQ() ;
                 fragment.setArguments(bundle);
                 fragmentTransaction.replace(R.id.linearLayout, fragment) ;
-                //fragmentTransaction.addToBackStack(null) ;
                 fragmentTransaction.commit() ;
-                /*if(fragment==null)
-                {
-                    Toast.makeText(this, "null fragment", Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    Toast.makeText(this, "non-null", Toast.LENGTH_LONG).show();
-                } */
-                //changeDataForMCQ(questionFullIfMcq, optionA, optionB, optionC, optionD);
                 break ;
 
             case "EXPLAIN_TEXT":
@@ -221,31 +210,14 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
                     }
                 }
 
-                try {
-                    FragmentManager mManager = getFragmentManager();
-                    FragmentTransaction fTrans = mManager.beginTransaction();
-
-                    Fragment f = new Fragment_ExplainText();
-//                    Fragment_ExplainText f = new Fragment_ExplainText();
-                    if(f != null && f instanceof Fragment_ExplainText) {
-                        Fragment_ExplainText fra = (Fragment_ExplainText) f;
-                        Bundle bundle_explain = new Bundle();
-                        bundle_explain.putString("qs", explainQuestion);
-                        frag_explainText = new Fragment_ExplainText();
-                        frag_explainText.setArguments(bundle_explain);
-                        fTrans.replace(R.id.linearLayout, frag_explainText);
-                        //fragmentTransaction.addToBackStack(null) ;
-                        fTrans.commit();
-                    }
-
-                    else {
-                        Toast.makeText(getApplicationContext(), "Null frag", Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-//                changeDataForExplainText(explainQuestion);
+                fragmentManager = getFragmentManager() ;
+                fragmentTransaction = fragmentManager.beginTransaction() ;
+                Bundle bundleForExplainText = new Bundle() ;
+                bundleForExplainText.putString("f",explainQuestion);
+                fragment_explainText = new Fragment_ExplainText() ;
+                fragment_explainText.setArguments(bundleForExplainText);
+                fragmentTransaction.replace(R.id.linearLayout, fragment_explainText) ;
+                fragmentTransaction.commit() ;
                 break ;
 
             case "DRAW":
@@ -258,31 +230,14 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
                         drawQuestion = current_item.getTextContent().toString();
                     }
                 }
-
-                try {
-                    FragmentManager mManager = getFragmentManager();
-                    FragmentTransaction fTrans = mManager.beginTransaction();
-
-                    Fragment f = new Fragment_Draw();
-
-                    if(f != null && f instanceof Fragment_Draw) {
-                        Fragment_Draw fra = (Fragment_Draw) f;
-                        Bundle bundle_explain = new Bundle();
-                        bundle_explain.putString("question_draw", drawQuestion);
-                        frag_draw = new Fragment_Draw();
-                        frag_draw.setArguments(bundle_explain);
-                        fTrans.replace(R.id.linearLayout, frag_draw);
-                        fTrans.commit();
-                    }
-
-                    else {
-                        Toast.makeText(getApplicationContext(), "Null frag", Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-//                changeDataForExplainText(explainQuestion);
+                fragmentManager = getFragmentManager() ;
+                fragmentTransaction = fragmentManager.beginTransaction() ;
+                Bundle bundleForDraw = new Bundle() ;
+                bundleForDraw.putString("g",drawQuestion);
+                fragment_draw = new Fragment_Draw() ;
+                fragment_draw.setArguments(bundleForDraw);
+                fragmentTransaction.replace(R.id.linearLayout,fragment_draw) ;
+                fragmentTransaction.commit() ;
                 break ;
 
         }
@@ -292,27 +247,18 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
 
     @Override
     public void changeDataForMCQ(String a, String b, String c, String d, String e) {
-
-
         // It is coming till this method. Now I have to set the data in the fragment
         //Toast.makeText(this,a,Toast.LENGTH_LONG).show();
-        //Fragment_MCQ f = findViewById(R.)
-        //TextView t = (TextView) v.findViewById(R.id.textView2) ;
+       //Fragment_MCQ f = findViewById(R.)
+       //TextView t = (TextView) v.findViewById(R.id.textView2) ;
         //t.setText(a);
         //fragment.mcqData(a,b,c,d,e);
-
-
-
-
     }
 
     @Override
     public void changeDataForExplainText(String a) {
-
-
         //Fragment_ExplainText f = (Fragment_ExplainText) getFragmentManager().findFragmentById(R.id.question_fragment);
-        // Fragment_ExplainText f = (Fragment_ExplainText)fragment ;
-        //f.setExplainTextData(a);
-
+         // Fragment_ExplainText f = (Fragment_ExplainText)fragment ;
+         //f.setExplainTextData(a);
     }
 }

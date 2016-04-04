@@ -15,30 +15,23 @@ import android.widget.TextView;
 public class Fragment_ExplainText extends Fragment {
     TextView explainQuestion ;
     EditText explainAnswer ;
-/*
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-
-        }
-        else {  }
-    }*/
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_explain_text,container,false);
-
-        String qs = getArguments().getString("qs") ;
-
-        explainQuestion = (TextView)getActivity().findViewById(R.id.explain_question) ;
-        explainAnswer = (EditText)getActivity().findViewById(R.id.multilineAnswer) ;
-
-        //explainQuestion.setText(qs);
-
-        return view;
-
+        View view = inflater.inflate(R.layout.fragment_explain_text,container,false) ;
+        explainQuestion = (TextView)view.findViewById(R.id.explain_question) ;
+        explainAnswer = (EditText)view.findViewById(R.id.multilineAnswer) ;
+        String f = getArguments().getString("f") ;
+        explainQuestion.setText(f);
+        return view ;
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+    }
+    public void setExplainTextData(String a)
+    {
+        explainQuestion.setText(a);
+    }
 }

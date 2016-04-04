@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by HP1 on 11-03-2016.
@@ -31,7 +32,7 @@ public class Fragment_MCQ extends Fragment {
         optionB.setText(c);
         optionC.setText(d);
         optionD.setText(e);
-//        Toast.makeText(getActivity(),"hi",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),"hi",Toast.LENGTH_LONG).show();
         return view ;
     }
 

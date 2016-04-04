@@ -46,21 +46,8 @@
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/questionNumberList"
         android:orientation="vertical">
-        <!--
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/scrollView">
 
 
-                    <fragment
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:name="com.example.hp1.exam_management.Fragment_MCQ"
-                        android:id="@+id/question_fragment" />
-
-        </ScrollView>
-            -->
     </LinearLayout>
 
 
