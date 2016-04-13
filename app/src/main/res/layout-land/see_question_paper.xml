@@ -36,19 +36,39 @@
         android:text="CourseName - ExamName"
         android:textSize="20dp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignEnd="@+id/date"
         android:layout_alignRight="@+id/date"
         android:layout_below="@+id/date"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/questionNumberList"
-        android:orientation="vertical">
+        android:layout_toRightOf="@+id/questionNumberList">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignEnd="@+id/date"
+            android:layout_alignRight="@+id/date"
+            android:layout_below="@+id/date"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/questionNumberList"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/next_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NEXT QUESTION"
+                android:layout_gravity="center"
+
+                />
+        </LinearLayout>
 
 
-    </LinearLayout>
+    </ScrollView>
 
 
 </RelativeLayout>
