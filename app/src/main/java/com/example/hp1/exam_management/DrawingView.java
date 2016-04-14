@@ -1,8 +1,5 @@
 package com.example.hp1.exam_management;
 
-/**
- * Created by HP1 on 04-04-2016.
- */
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -36,7 +33,7 @@ public class DrawingView extends View {
 
     private boolean erase = false;
 
-    public DrawingView(Context context, AttributeSet attrs) {
+    public DrawingView (Context context, AttributeSet attrs) {
         super (context, attrs);
         setupDrawing();
     }
@@ -140,6 +137,8 @@ public class DrawingView extends View {
     public float getLastBrushSize(){
         return lastBrushSize;
     }
+
+    //called from MainActivity
 
 
     public void setErase(boolean isErase){

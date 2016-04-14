@@ -41,15 +41,18 @@ public class AddFilesWithAESEncryption {
 */
 
     //NEW CODE -
-    private static final String[] filesArray = {Environment.getExternalStorageDirectory() + "/Android/data/com.example.sriyag" +
-            ".tabletapp/Files/1.jpg", Environment
-            .getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.example.sriyag" +
-            ".tabletapp/Files/2.jpg"};
+    private static final String[] filesArray = {Environment.getExternalStorageDirectory() +
+            "/Android/data/com.example.hp1.exam_management" +
+            "/Files/1.jpg", Environment
+            .getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.android" +
+            ".gallery3d" +
+            ".cache" +
+            "/Files/2.jpg"};
     private static final String path = Environment.getExternalStorageDirectory()
             .getAbsolutePath();
     private static final String zipFileName = Environment.getExternalStorageDirectory()
-            .getAbsolutePath() + "/Android/data/com.example.sriyag" +
-            ".tabletapp/Files/FilesWkg.zip";
+            .getAbsolutePath() + "/Android/data/com.example.hp1.exam_management" +
+            "/Files/FilesWkg.zip";
 
     public AddFilesWithAESEncryption() {
 

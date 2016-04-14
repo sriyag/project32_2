@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,7 +28,7 @@ import javax.xml.parsers.ParserConfigurationException;
 /**
  * Created by HP1 on 11-03-2016.
  */
-public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClickListener,Communicator_MCQ,Communicator_ExplainText {
+public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClickListener,Communicator_MCQ,Communicator_ExplainText, View.OnClickListener {
 
 
     Fragment_MCQ fragment ;
@@ -40,6 +41,7 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
     String courseName ;    //CourseName
     String examNameSelected ;  //ExamNameOfCourse
     TextView title ;
+    Button nextQuestion ;  //button for next question
 
 
     ListView questionNumberList ;
@@ -49,6 +51,8 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
     String date ;
     String questionPaperFileName ;
     String tagOfQuestion ;
+
+    int questionNumberSelected ;
 
     String questionFullIfMcq ;    //if tag is MCQ use these variables.
     String optionA ;
@@ -65,6 +69,8 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.see_question_paper);
+        nextQuestion = (Button) findViewById(R.id.next_question) ;
+        nextQuestion.setOnClickListener(this);
         courseName = getIntent().getExtras().getString("nameOfCourseSelected") ;
         examNameSelected = getIntent().getExtras().getString("examNameSelected") ;
         title = (TextView)findViewById(R.id.titleTop) ;
@@ -107,7 +113,7 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        int questionNumberSelected = position+1 ;
+        questionNumberSelected = position+1 ;
         displayQuestion(questionNumberSelected) ;
 
     }
@@ -249,8 +255,8 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
     public void changeDataForMCQ(String a, String b, String c, String d, String e) {
         // It is coming till this method. Now I have to set the data in the fragment
         //Toast.makeText(this,a,Toast.LENGTH_LONG).show();
-       //Fragment_MCQ f = findViewById(R.)
-       //TextView t = (TextView) v.findViewById(R.id.textView2) ;
+        //Fragment_MCQ f = findViewById(R.)
+        //TextView t = (TextView) v.findViewById(R.id.textView2) ;
         //t.setText(a);
         //fragment.mcqData(a,b,c,d,e);
     }
@@ -258,7 +264,16 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
     @Override
     public void changeDataForExplainText(String a) {
         //Fragment_ExplainText f = (Fragment_ExplainText) getFragmentManager().findFragmentById(R.id.question_fragment);
-         // Fragment_ExplainText f = (Fragment_ExplainText)fragment ;
-         //f.setExplainTextData(a);
+        // Fragment_ExplainText f = (Fragment_ExplainText)fragment ;
+        //f.setExplainTextData(a);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.next_question:
+                questionNumberSelected = questionNumberSelected + 1 ;
+                displayQuestion(questionNumberSelected);
+        }
     }
 }

@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v.getId()==R.id.enterbutton){
             Intent intent = new Intent(this,DisplayCourses.class) ;
+//            Intent intent = new Intent(this, ZipAndEmail.class) ;
             startActivity(intent);
         }
     }

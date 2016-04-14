@@ -52,6 +52,13 @@
             android:label="@string/app_name"
             android:screenOrientation="landscape">
         </activity>
+        <activity
+            android:name=".ZipAndEmail"
+            android:label="exam_management"
+            android:screenOrientation="landscape">
+        </activity>
+
+
 
 
     </application>
