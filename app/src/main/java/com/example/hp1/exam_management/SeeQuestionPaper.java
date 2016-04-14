@@ -276,4 +276,17 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
                 displayQuestion(questionNumberSelected);
         }
     }
+<<<<<<< HEAD
 }
+=======
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.next_question:
+                questionNumberSelected = questionNumberSelected + 1 ;
+                displayQuestion(questionNumberSelected);
+        }
+    }
+}
+>>>>>>> e5ba5f692968726b66182e0590370c4a58ddd545
