@@ -1,4 +1,4 @@
-package com.example.hp1.exam_management;
+package com.example.hp1.exam_management_student_version;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,13 +20,14 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 /**
- * Created by HP1 on 10-01-2016.
+ * Created by HP1 on 15-04-2016.
  */
 public class DisplayCourses extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener {
     ListView courses ;
     Button toAddACourse,addCourse, back ;
     EditText courseNameToAdd ;
     String courseNameTyped ;
+    String name_of_student ;
     // Button viewStudentList ;
     private ArrayList<String> allCourses = new ArrayList<>()  ;
 
@@ -41,8 +41,10 @@ public class DisplayCourses extends Activity implements View.OnClickListener, Ad
         toAddACourse = (Button)findViewById(R.id.addACourse) ;
         addCourse = (Button)findViewById(R.id.addCourse) ;
         back = (Button)findViewById(R.id.back) ;
-         //viewStudentList = (Button) findViewById(R.id.viewStudentList) ;
+        //viewStudentList = (Button) findViewById(R.id.viewStudentList) ;
         courseNameToAdd = (EditText)findViewById(R.id.addingCourseEditText) ;
+
+        name_of_student = getIntent().getExtras().getString("name_of_candidate") ;
         toAddACourse.setOnClickListener(this);
         addCourse.setOnClickListener(this);
         back.setOnClickListener(this);
@@ -78,33 +80,35 @@ public class DisplayCourses extends Activity implements View.OnClickListener, Ad
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.addACourse:
-                 courseNameToAdd.setVisibility(View.VISIBLE);
-                 addCourse.setVisibility(View.VISIBLE);
-                 break;
+                courseNameToAdd.setVisibility(View.VISIBLE);
+                addCourse.setVisibility(View.VISIBLE);
+                break;
             case R.id.addCourse:
-                 courseNameTyped = courseNameToAdd.getText().toString() ;
-                 if(courseNameTyped.equals("")){
-                     Toast.makeText(this,"Type the Course Name",Toast.LENGTH_LONG).show();
-                 }
-                 else {
-                     String concatString = courseNameTyped.concat("\n") ;
-                     FileOutputStream fileOutputStream = null ;
-                     try {
-                         fileOutputStream = openFileOutput("courses.txt", Context.MODE_APPEND) ;
-                         fileOutputStream.write(concatString.getBytes());
-                         fileOutputStream.close();
-                     } catch (FileNotFoundException e) {
-                         e.printStackTrace();
-                     } catch (IOException e) {
-                         e.printStackTrace();
-                     }
-                     startActivity(new Intent(this,DisplayCourses.class));
-                 }
-                 break;
+                courseNameTyped = courseNameToAdd.getText().toString() ;
+                if(courseNameTyped.equals("")){
+                   // Toast.makeText(this,"Type the Course Name",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    String concatString = courseNameTyped.concat("\n") ;
+                    FileOutputStream fileOutputStream = null ;
+                    try {
+                        fileOutputStream = openFileOutput("courses.txt", Context.MODE_APPEND) ;
+                        fileOutputStream.write(concatString.getBytes());
+                        fileOutputStream.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Intent i = new Intent(this,DisplayCourses.class) ;
+                    i.putExtra("name_of_candidate", name_of_student);
+                    startActivity(i);
+                }
+                break;
             case R.id.back:
-                 Intent intent = new Intent(this,MainActivity.class) ;
-                 startActivity(intent);
-                 break;
+                Intent intent = new Intent(this,MainActivity.class) ;
+                startActivity(intent);
+                break;
         }
     }
 
@@ -114,6 +118,7 @@ public class DisplayCourses extends Activity implements View.OnClickListener, Ad
         String nameOfCourseSelected = clickedView.getText().toString() ;
         Intent intent = new Intent(this,Exams.class) ;
         intent.putExtra("nameOfCourseSelected", nameOfCourseSelected) ;
+        intent.putExtra("name_of_candidate",name_of_student) ;
         startActivity(intent);
     }
 

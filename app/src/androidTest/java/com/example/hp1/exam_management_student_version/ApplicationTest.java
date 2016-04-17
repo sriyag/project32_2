@@ -1,4 +1,4 @@
-package com.example.hp1.exam_management;
+package com.example.hp1.exam_management_student_version;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

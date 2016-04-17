@@ -1,4 +1,7 @@
-package com.example.hp1.exam_management;
+package com.example.hp1.exam_management_student_version;
+/**
+ * Created by HP1 on 04-04-2016.
+ */
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -24,26 +27,45 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Fragment_Draw_New extends Fragment implements View.OnClickListener {
-
+/**
+ * Created by HP1 on 11-03-2016.
+ */
+public class Fragment_Draw extends Fragment implements View.OnClickListener {
 
     private DrawingView drawView; //canvas: DrawingView class extends View
     private LinearLayout ll;
     private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn; //4 buttons
     private float smallPencil, mediumPencil, largePencil; //pencil size
     private Bitmap bitmap;
-    private TextView questionForDraw ;
+    private ImageButton c1, c2, c3;
 
+    private final String TAG = "Fragment_Draw";
+
+
+    //Working -
+    private TextView questionForDraw ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.content_main_land, container, false) ;
+        //Working
+        return inflater.inflate(R.layout.fragment_draw, container, false);
+    }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        String question = getArguments().getString("g") ;
+        questionForDraw = (TextView) getActivity().findViewById(R.id.tv_drawfrag);
+        questionForDraw.setText(question);
+
+        //NEW STUFF ADDED -
         smallPencil = getResources().getInteger(R.integer.small_size);
         mediumPencil = getResources().getInteger(R.integer.medium_size);
         largePencil = getResources().getInteger(R.integer.large_size);
 
         drawBtn = (ImageButton) getActivity().findViewById(R.id.draw_btn);
+        drawBtn.setOnClickListener(this);
 
         eraseBtn = (ImageButton) getActivity().findViewById(R.id.erase_btn);
         eraseBtn.setOnClickListener(this);
@@ -54,50 +76,85 @@ public class Fragment_Draw_New extends Fragment implements View.OnClickListener 
         saveBtn = (ImageButton) getActivity().findViewById(R.id.save_btn);
         saveBtn.setOnClickListener(this);
 
-        //        Set the class up as a click listener for the button
-        drawBtn.setOnClickListener(this);
-
 //        instantiate this variable by retrieving a reference to it from the layout:
         drawView = (DrawingView) getActivity().findViewById(R.id.drawing);
 
 
         LinearLayout paintLayout = (LinearLayout) getActivity().findViewById(R.id.paint_colors);
         currPaint = (ImageButton)paintLayout.getChildAt(0);
+        c1 = (ImageButton) getActivity().findViewById(R.id.colour1);
+        c2 = (ImageButton) getActivity().findViewById(R.id.colour2);
+        c3 = (ImageButton) getActivity().findViewById(R.id.colour3);
+        c1.setOnClickListener(this);
+        c2.setOnClickListener(this);
+        c3.setOnClickListener(this);
 
 //        use a different drawable image on the button to show that it is currently selected
         currPaint.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.paint_pressed));
 
-
-        String question = getArguments().getString("g") ;
-        questionForDraw = (TextView) view.findViewById(R.id.tv_drawfrag);
-        questionForDraw.setText(question);
-        return view ;
     }
 
-    public void paintClicked(View view){
-        //use chosen color
 
-        drawView.setErase(false);
-        drawView.setBrushSize(drawView.getLastBrushSize());
-
-        if(view!=currPaint){
-            //update color, retrieve the tag we set for each button in the layout, representing the chosen color
-
-            ImageButton imgView = (ImageButton) view;
-            String color = view.getTag().toString();
-            drawView.setColor(color);
-
-//            update the UI to reflect the new chosen paint and set the previous one back to normal
-            imgView.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.paint_pressed));
-            currPaint.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.paint));
-            currPaint=(ImageButton)view;
-        }
-    }
 
     @Override
     public void onClick(View view){
+
+        if (view.getId()==R.id.colour1) {
+            drawView.setErase(false);
+            drawView.setBrushSize(drawView.getLastBrushSize());
+
+            if(view!=currPaint){
+                //update color, retrieve the tag we set for each button in the layout, representing the chosen color
+
+                ImageButton imgView = (ImageButton) view;
+                String color = view.getTag().toString();
+                drawView.setColor(color);
+
+//            update the UI to reflect the new chosen paint and set the previous one back to normal
+                imgView.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.paint_pressed));
+                currPaint.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.paint));
+                currPaint=(ImageButton)view;
+            }
+        }
+
+        else if (view.getId()==R.id.colour2) {
+            drawView.setErase(false);
+            drawView.setBrushSize(drawView.getLastBrushSize());
+
+            if(view!=currPaint){
+                //update color, retrieve the tag we set for each button in the layout, representing the chosen color
+
+                ImageButton imgView = (ImageButton) view;
+                String color = view.getTag().toString();
+                drawView.setColor(color);
+
+//            update the UI to reflect the new chosen paint and set the previous one back to normal
+                imgView.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.paint_pressed));
+                currPaint.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.paint));
+                currPaint=(ImageButton)view;
+            }
+        }
+
+        else if (view.getId()==R.id.colour3) {
+            drawView.setErase(false);
+            drawView.setBrushSize(drawView.getLastBrushSize());
+
+            if(view!=currPaint){
+                //update color, retrieve the tag we set for each button in the layout, representing the chosen color
+
+                ImageButton imgView = (ImageButton) view;
+                String color = view.getTag().toString();
+                drawView.setColor(color);
+
+//            update the UI to reflect the new chosen paint and set the previous one back to normal
+                imgView.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.paint_pressed));
+                currPaint.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.paint));
+                currPaint=(ImageButton)view;
+            }
+        }
+
         //respond to clicks
-        if(view.getId()==R.id.draw_btn){
+        else if(view.getId()==R.id.draw_btn){
             //draw button clicked
             final Dialog brushDialog = new Dialog(getActivity());
             brushDialog.setTitle("Pencil size:");
@@ -146,7 +203,7 @@ public class Fragment_Draw_New extends Fragment implements View.OnClickListener 
             brushDialog.setContentView(R.layout.pencil_size_chooser);
 
             ImageButton smallBtn = (ImageButton)brushDialog.findViewById(R.id.small_pencil);
-            smallBtn.setOnClickListener(new View.OnClickListener(){
+            smallBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     drawView.setErase(true);
@@ -186,7 +243,6 @@ public class Fragment_Draw_New extends Fragment implements View.OnClickListener 
                     drawView.startNew();
                     drawView.buildDrawingCache();
                     drawView.bringToFront();
-
                     dialog.dismiss();
                 }
             });
@@ -211,19 +267,27 @@ public class Fragment_Draw_New extends Fragment implements View.OnClickListener 
 //                enable the drawing cache on the custom View
                     drawView.setDrawingCacheEnabled(true);
 
-                    String imgSaved = MediaStore.Images.Media.insertImage(
-                            getActivity().getContentResolver(), drawView.getDrawingCache(),
-                            "Img" +".png", "drawing");
-
+                    try {
+                        String imgSaved = MediaStore.Images.Media.insertImage(
+                                getActivity().getContentResolver(), drawView.getDrawingCache(),
+                                "Img" + ".png", "drawing");
 
 
 //                    bitmap = getBitmapOfView(drawView);
-                    bitmap = drawView.getDrawingCache();
-                    Toast.makeText(getActivity(), "Drawing saved locally with name: " +
-                            imgSaved, Toast
-                            .LENGTH_SHORT).show();
-                    //NOW SAVE THIS IMAGE IN FILE STORAGE
-                    storeImage(bitmap);
+                        bitmap = drawView.getDrawingCache();
+                        Toast.makeText(getActivity(), "Drawing saved locally with name: " +
+                                imgSaved, Toast
+                                .LENGTH_LONG).show();
+                        //NOW SAVE THIS IMAGE IN FILE STORAGE
+                        storeImage(bitmap);
+                    } catch (Exception e) {
+                        Toast.makeText(getActivity(), "catch msg: " + e.getMessage(), Toast
+                                .LENGTH_LONG)
+                                .show();
+                    }
+
+                    //ERROR MSG (TOAST) - UNABLE TO CREATE NEW FILE -
+                    // /storage/emulated/0/DCIM/Camera/14607031106167.jpg
 
                     drawView.destroyDrawingCache();
                 }
@@ -237,16 +301,6 @@ public class Fragment_Draw_New extends Fragment implements View.OnClickListener 
         }
 
     }
-
-
-    public Bitmap getBitmapOfView(View v)
-    {
-        View rootview = v.getRootView();
-        rootview.setDrawingCacheEnabled(true);
-        Bitmap bmp = rootview.getDrawingCache();
-        return bmp;
-    }
-
 
     private void storeImage(Bitmap image) {
         File pictureFile = getOutputMediaFile();
@@ -268,7 +322,7 @@ public class Fragment_Draw_New extends Fragment implements View.OnClickListener 
         }
     }
 
-//    * Create a File for saving an image or video
+    //    * Create a File for saving an image or video
     private  File getOutputMediaFile(){
         // To be safe, you should check that the SDCard is mounted
         // using Environment.getExternalStorageState() before doing this.
@@ -288,11 +342,12 @@ public class Fragment_Draw_New extends Fragment implements View.OnClickListener 
             }
         }
         // Create a media file name
-        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
+        String timeStamp = new SimpleDateFormat("mmss").format(new Date());
         File mediaFile;
-        String mImageName="MI_"+ timeStamp +".jpg";
+        String mImageName="Img_"+ timeStamp + ".png";
         mediaFile = new File(mediaStorageDir.getPath() + File.separator + mImageName);
+        Toast.makeText(getActivity(), mediaStorageDir.getPath() + File.separator + mImageName,
+                Toast.LENGTH_LONG).show();
         return mediaFile;
     }
-
 }

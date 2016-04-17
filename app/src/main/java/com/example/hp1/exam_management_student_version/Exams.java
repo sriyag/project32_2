@@ -1,4 +1,4 @@
-package com.example.hp1.exam_management;
+package com.example.hp1.exam_management_student_version;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,6 +24,7 @@ import java.util.StringTokenizer;
  */
 public class Exams extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener {
     String courseName ;
+    String name_of_student ;
     TextView courseNameDisplay ;
     Button toAddExam,addExam,back ;
     EditText addExamBox ;
@@ -36,6 +36,7 @@ public class Exams extends Activity implements View.OnClickListener, AdapterView
         setContentView(R.layout.exams_layout);
         Intent intent = getIntent() ;
         courseName = intent.getExtras().getString("nameOfCourseSelected") ;
+        name_of_student = intent.getExtras().getString("name_of_candidate") ;
 
         listOfExams = (ListView) findViewById(R.id.listOfExams) ;
         courseNameDisplay = (TextView) findViewById(R.id.courseNameDisplay) ;
@@ -84,6 +85,7 @@ public class Exams extends Activity implements View.OnClickListener, AdapterView
         switch (v.getId()){
             case R.id.back:
                 Intent intent = new Intent(this,DisplayCourses.class) ;
+                intent.putExtra("name_of_candidate",name_of_student) ;
                 startActivity(intent);
                 break;
             case R.id.toAddExam:
@@ -93,7 +95,7 @@ public class Exams extends Activity implements View.OnClickListener, AdapterView
             case R.id.addExam:
                 String newExamToAdd = addExamBox.getText().toString() ;
                 if(newExamToAdd.equals("")){
-                    Toast.makeText(this,"Type Exam Name",Toast.LENGTH_LONG).show();
+                  //  Toast.makeText(this,"Type Exam Name",Toast.LENGTH_LONG).show();
                 }
                 else{
                     String finalEntry = newExamToAdd.concat("\n") ;
@@ -109,6 +111,7 @@ public class Exams extends Activity implements View.OnClickListener, AdapterView
                     }
                     Intent refresh = new Intent(this,Exams.class) ;
                     refresh.putExtra("nameOfCourseSelected",courseName) ;
+                    refresh.putExtra("name_of_candidate",name_of_student) ;
                     startActivity(refresh);
                 }
                 break;
@@ -122,9 +125,10 @@ public class Exams extends Activity implements View.OnClickListener, AdapterView
         //We have to take course name and exam name to next screen i.e. ExamManagerGateway
         TextView selectedView = (TextView) view;
         String examNameSelected = selectedView.getText().toString() ;
-        Intent intent = new Intent(this,ExamManagerGateway.class) ;
+        Intent intent = new Intent(this,StartExam.class) ;
         intent.putExtra("nameOfCourseSelected",courseName) ;
         intent.putExtra("examNameSelected",examNameSelected) ;
+        intent.putExtra("name_of_candidate",name_of_student) ;
         startActivity(intent);
     }
 }

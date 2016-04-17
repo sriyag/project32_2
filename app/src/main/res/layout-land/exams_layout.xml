@@ -49,18 +49,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/addExamBox"
             android:layout_marginTop="5dp"
-            android:background="@android:color/holo_purple"
             android:textSize="35dp"
             android:visibility="invisible"
             android:layout_gravity="center_horizontal" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Student List"
-            android:id="@+id/viewStudentList"
-            android:layout_gravity="center_horizontal" />
 
         <Button
             style="?android:attr/buttonStyleSmall"

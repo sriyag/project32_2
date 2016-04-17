@@ -1,4 +1,4 @@
-package com.example.hp1.exam_management;
+package com.example.hp1.exam_management_student_version;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -33,7 +33,7 @@ public class DrawingView extends View {
 
     private boolean erase = false;
 
-    public DrawingView (Context context, AttributeSet attrs) {
+    public DrawingView(Context context, AttributeSet attrs) {
         super (context, attrs);
         setupDrawing();
     }

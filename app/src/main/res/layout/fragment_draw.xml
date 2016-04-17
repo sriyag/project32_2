@@ -66,17 +66,6 @@
     </LinearLayout>
 
 
-    <!-- Canvas -->
-    <com.example.hp1.exam_management.DrawingView
-        android:id="@+id/drawing"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="3dp"
-        android:layout_weight="1"
-        android:background="#FFFFFFFF" />
 
     <!-- Choose colours to draw with: black, blue, grey -->
     <LinearLayout
@@ -117,6 +106,18 @@
             android:tag="#5c6274" />
 
     </LinearLayout>
+
+        <!-- Canvas -->
+        <com.example.hp1.exam_management_student_version.DrawingView
+            android:id="@+id/drawing"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"
+            android:background="#FFFFFFFF" />
 
     </LinearLayout>
 

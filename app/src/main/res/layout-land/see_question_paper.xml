@@ -1,74 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
     <ListView
         android:id="@+id/questionNumberList"
-        android:layout_width="201dp"
-        android:layout_height="309dp"
-        android:layout_marginTop="0dp" />
-
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="100dp"
-        android:layout_height="41dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_gravity="right"
-        android:gravity="right"
-        android:text="Date"
-        android:textSize="20dp" />
+        android:layout_width="130dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true" />
 
     <TextView
         android:id="@+id/titleTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/date"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/date"
         android:layout_toRightOf="@+id/questionNumberList"
-        android:layout_toStartOf="@+id/date"
         android:gravity="center"
         android:text="CourseName - ExamName"
-        android:textSize="20dp" />
+        android:textSize="30sp" />
 
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignEnd="@+id/date"
-        android:layout_alignRight="@+id/date"
-        android:layout_below="@+id/date"
-        android:layout_toRightOf="@+id/questionNumberList">
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/questionNumberList"
+        android:layout_below="@+id/titleTop">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignEnd="@+id/date"
-            android:layout_alignRight="@+id/date"
-            android:layout_below="@+id/date"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/questionNumberList"
             android:orientation="vertical">
 
-            <Button
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                 <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Timer"
+                 android:id="@+id/tv_Timer"
+                 android:textSize="20sp"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <Button
                 android:id="@+id/next_question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NEXT QUESTION"
-                android:layout_gravity="center"
-
+                android:layout_alignParentRight="true"
+                android:textSize="15sp"
+                android:text="Next"
                 />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="420dp"
+                android:id="@+id/linearLayout"
+                android:orientation="vertical">
+
+            </LinearLayout>
         </LinearLayout>
 
-
     </ScrollView>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish"
+        android:textSize="15sp"
+        android:id="@+id/finish_exam"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>
