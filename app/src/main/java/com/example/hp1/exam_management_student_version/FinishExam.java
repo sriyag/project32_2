@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -22,7 +23,7 @@ public class FinishExam extends Activity implements View.OnClickListener {
 
     String courseName;    //CourseName
     String examNameSelected;  //ExamNameOfCourse
-    String nameOfCandidate;   //name of candidate
+    String studentName, studentID;   //name of candidate
     String zipFileName ;
 
     @Override
@@ -32,7 +33,9 @@ public class FinishExam extends Activity implements View.OnClickListener {
 
         courseName = getIntent().getExtras().getString("nameOfCourseSelected");
         examNameSelected = getIntent().getExtras().getString("examNameSelected");
-        nameOfCandidate = getIntent().getExtras().getString("name_of_candidate");
+
+        studentName = getIntent().getExtras().getString("name_of_candidate");
+        studentID = getIntent().getExtras().getString("student_id");
 
         zipAndEmail = (Button)findViewById(R.id.zip_email) ;
         zipAndEmail.setOnClickListener(this);
@@ -46,8 +49,12 @@ public class FinishExam extends Activity implements View.OnClickListener {
         Intent emailIntent = new Intent(this,Email.class) ;
         emailIntent.putExtra("nameOfCourseSelected", courseName) ;
         emailIntent.putExtra("examNameSelected",examNameSelected) ;
-        emailIntent.putExtra("name_of_candidate",nameOfCandidate) ;
+        emailIntent.putExtra("name_of_candidate",studentName) ;
+        emailIntent.putExtra("student_id",studentID) ;
         emailIntent.putExtra("name_of_zipfile",zipFileName) ;
+
+        Toast.makeText(getApplicationContext(), zipFileName, Toast.LENGTH_SHORT).show();
+
         startActivity(emailIntent);
 
     }
@@ -57,7 +64,7 @@ public class FinishExam extends Activity implements View.OnClickListener {
         public AddFilesWithAESEncryption()
         {
             String filePath = Environment.getExternalStorageDirectory() + "/" + courseName + "_" + examNameSelected + "_" + "questionpaper" ;
-            zipFileName = Environment.getExternalStorageDirectory() + "/" + courseName + "_" + examNameSelected + "_" + "answer.zip" ;
+            zipFileName = Environment.getExternalStorageDirectory() + "/" + courseName + "_" + examNameSelected + "_" + studentName + "_" + studentID + "answer.zip" ;
             File file = new File(filePath) ;
             if(file.exists())
             {
@@ -73,6 +80,8 @@ public class FinishExam extends Activity implements View.OnClickListener {
                     zipFile.addFile(file, parameters);
                 } catch (ZipException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), e.getMessage() + " - zip error msg",
+                            Toast.LENGTH_LONG).show();
                 }
             }
         }

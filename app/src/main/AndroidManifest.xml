@@ -4,8 +4,7 @@
     >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-                     android:maxSdkVersion="23" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
 
@@ -26,7 +25,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:configChanges="keyboardHidden|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,26 +34,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DisplayCourses"
-            android:label="@string/app_name"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".Exams"
-            android:label="@string/app_name"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".StartExam"
             android:label="@string/app_name"
             android:screenOrientation="landscape" />
-        <activity
-            android:name=".SeeQuestionPaper"
-            android:label="@string/app_name"
-            android:screenOrientation="landscape" />
 
-        <activity
-            android:name=".ZipAndEmail"
-            android:label="@string/app_name"
-            android:screenOrientation="landscape" />
+        <activity android:name=".SeeQuestionPaper"
+                  android:label="@string/app_name"
+                  android:screenOrientation="landscape" />
 
         <activity
             android:name=".Email"
@@ -64,6 +51,9 @@
             android:name=".FinishExam"
             android:label="@string/app_name"
             android:screenOrientation="landscape" />
+        <activity android:name=".AvailableExams"
+                  android:label="exam_management_student_version"
+                  android:screenOrientation="landscape"/>
 
     </application>
 

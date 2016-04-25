@@ -59,7 +59,7 @@ public class Fragment_MCQ extends Fragment implements View.OnClickListener, Radi
         saveButton = (Button)view.findViewById(R.id.save_button) ;
         saveButton.setOnClickListener(this);
         question.setText(a);
-        question_number.setText(qn);
+        question_number.setText(qn + ". ");
         for (int i = 0; i < radioGroup .getChildCount(); i++) {
             if(i==0)
             ((RadioButton) radioGroup.getChildAt(i)).setText(b);
@@ -84,7 +84,6 @@ public class Fragment_MCQ extends Fragment implements View.OnClickListener, Radi
     @Override
     public void onClick(View v) {
         String filepath = Environment.getExternalStorageDirectory() + "/" + "datastorage_t1_questionpaper" ;
-        Toast.makeText(getActivity(), filepath.toString(), Toast.LENGTH_LONG).show();
         File file = new File(filepath);
         DocumentBuilder dbuilder = null;
         try {
@@ -94,7 +93,7 @@ public class Fragment_MCQ extends Fragment implements View.OnClickListener, Radi
             Element element = document.getDocumentElement();
             NodeList questions_list = document.getElementsByTagName("question");   //tags with question
             Node particular_question = questions_list.item(Integer.parseInt(qn) - 1) ;
-            Toast.makeText(getActivity(),qn,Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),qn,Toast.LENGTH_SHORT).show();
             NodeList attributes = particular_question.getChildNodes() ;
             for(int i=0;i<attributes.getLength();i++)
             {
@@ -104,7 +103,7 @@ public class Fragment_MCQ extends Fragment implements View.OnClickListener, Radi
                     if(checkedAnswer!=null && checkedAnswer.length()>0)
                     {
                         temp.setTextContent(checkedAnswer);
-                        Toast.makeText(getActivity(),"writing"+checkedAnswer,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),"writing"+checkedAnswer,Toast.LENGTH_SHORT).show();
                     }
                 }
             }

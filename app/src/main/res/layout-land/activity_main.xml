@@ -17,10 +17,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter Name"
-        android:id="@+id/name_enter"
-        android:textSize="30dp"
-        android:layout_marginTop="10dp"
+        android:text="Student Name"
+        android:id="@+id/tvStudentName"
+        android:textSize="25sp"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/title_text"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -30,44 +30,42 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:textSize="30dp"
-        android:hint="type name here"
-        android:id="@+id/name"
+        android:textSize="25sp"
+        android:id="@+id/etStudentName"
         android:layout_below="@+id/title_text"
+        android:layout_alignBottom="@+id/tvStudentName"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"
-        android:textSize="30dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/password_enter"
-        android:layout_below="@+id/name"
+        android:text="Student ID"
+        android:textSize="25sp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/tvStudentID"
+        android:layout_below="@+id/etStudentName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/password"
-        android:hint="type password here"
-        android:layout_alignTop="@+id/password_enter"
-        android:layout_alignLeft="@+id/name"
-        android:layout_alignStart="@+id/name"
-        android:layout_alignRight="@+id/name"
-        android:layout_alignEnd="@+id/name" />
+        android:id="@+id/etStudentID"
+        android:textSize="25sp"
+        android:layout_alignBottom="@+id/tvStudentID"
+        android:layout_alignLeft="@+id/etStudentName"
+        android:layout_alignStart="@+id/etStudentName"
+        android:layout_alignRight="@+id/etStudentName"
+        android:layout_alignEnd="@+id/etStudentName" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NEXT"
         android:id="@+id/next_button"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/etStudentID"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp" />
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>

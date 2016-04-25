@@ -34,7 +34,8 @@ import javax.xml.parsers.ParserConfigurationException;
 /**
  * Created by HP1 on 15-04-2016.
  */
-public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClickListener,
+        View.OnClickListener {
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
@@ -45,7 +46,7 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
 
     String courseName;    //CourseName
     String examNameSelected;  //ExamNameOfCourse
-    String nameOfCandidate;   //name of candidate
+    String nameOfCandidate, studentID;   //name of candidate
 
     Button nextQuestion;  //button for next question
     Button finishExam ;   //to finish the exam
@@ -60,6 +61,7 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
     String questionPaperFileName;    //file name
     String tagOfQuestion;            //tag of question
 
+    int numberOfLabels;
     int questionNumberSelected = 1;      // selected question
 
     String questionFullIfMcq;    //if tag is MCQ use these variables.
@@ -87,11 +89,12 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
         courseName = getIntent().getExtras().getString("nameOfCourseSelected");
         examNameSelected = getIntent().getExtras().getString("examNameSelected");
         nameOfCandidate = getIntent().getExtras().getString("name_of_candidate");
+        studentID = getIntent().getExtras().getString("student_id");
 
         questionPaperFileName = courseName.concat("_").concat(examNameSelected).concat("_questionpaper");
 
         numberOfQuestions = findNumberOfQuestions(questionPaperFileName);   //to get number of questions
-        Toast.makeText(this, "" + numberOfQuestions, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "" + numberOfQuestions, Toast.LENGTH_SHORT).show();
 
         title = (TextView) findViewById(R.id.titleTop);
         title.setText(courseName.concat("-").concat(examNameSelected));
@@ -116,17 +119,18 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
                 //After 180000 milliseconds finish current
                 //if you would like to execute something when time finishes
                 Toast.makeText(getApplicationContext(), "Time up!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SeeQuestionPaper.this, StartExam.class));
+                startActivity(new Intent(SeeQuestionPaper.this, FinishExam.class));
             }
         }.start();
 
         int x;
         for (x = 1; x <= numberOfQuestions; x++) {
-            questionNumber.add("Question" + x);
+            questionNumber.add("Q" + x);
         }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, questionNumber);
         questionNumberList.setAdapter(arrayAdapter);
         questionNumberList.setOnItemClickListener(this);    //displaying ListView done.
+
 
         displayQuestion(questionNumberSelected);   //displaying the first question by-default
     }
@@ -134,7 +138,6 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
     private int findNumberOfQuestions(String questionPaperFileName) {
 
         String filepath = Environment.getExternalStorageDirectory() + "/" + questionPaperFileName;
-        Toast.makeText(this, filepath.toString(), Toast.LENGTH_LONG).show();
         File file = new File(filepath);
         DocumentBuilder dbuilder = null;
         try {
@@ -156,6 +159,8 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        view.setSelected(true);
         questionNumberSelected = position + 1;
         displayQuestion(questionNumberSelected);
     }
@@ -186,6 +191,7 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
                             tagOfQuestion = current_item.getTextContent().toString();
                             break;
                         }
+
                     }
                 }
             }
@@ -284,6 +290,7 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
                 fragmentTransaction = fragmentManager.beginTransaction() ;
                 Bundle bundleForDraw = new Bundle() ;
                 bundleForDraw.putString("g", drawQuestion);
+                bundleForDraw.putString("questionnumber",questionNumberSelected+"");
 
                 if (fragmentManager.findFragmentByTag("" + questionNumberSelected) == null) {
                     fragment_draw = new Fragment_Draw();
@@ -308,12 +315,21 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
                     {
                         labelQuestion = current_item.getTextContent().toString();
                     }
+
+                    if (current_item.getNodeName().equalsIgnoreCase("label"))
+                    {
+                        numberOfLabels = Integer.parseInt(current_item.getTextContent().toString());
+                    }
                 }
+
+
 
                 fragmentManager = getFragmentManager() ;
                 fragmentTransaction = fragmentManager.beginTransaction() ;
                 Bundle bundleForLabel = new Bundle() ;
                 bundleForLabel.putString("lab", labelQuestion);
+                bundleForLabel.putInt("number_of_labels", numberOfLabels);
+                bundleForLabel.putString("questionnumber",questionNumberSelected+"");
 
                 if (fragmentManager.findFragmentByTag("" + questionNumberSelected) == null) {
                     fragment_label = new Fragment_Label();
@@ -349,13 +365,14 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                 alertDialogBuilder.setMessage("Are you sure you want to finish the test ??");
                 alertDialogBuilder.setCancelable(true) ;
-                alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent intent = new Intent(SeeQuestionPaper.this,FinishExam.class) ;
                         intent.putExtra("nameOfCourseSelected",courseName) ;
                         intent.putExtra("examNameSelected",examNameSelected) ;
                         intent.putExtra("name_of_candidate",nameOfCandidate) ;
+                        intent.putExtra("student_id",studentID) ;
                         startActivity(intent);
                     }
                 });

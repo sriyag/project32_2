@@ -38,6 +38,7 @@ public class Fragment_Draw extends Fragment implements View.OnClickListener {
     private float smallPencil, mediumPencil, largePencil; //pencil size
     private Bitmap bitmap;
     private ImageButton c1, c2, c3;
+    String qn;
 
     private final String TAG = "Fragment_Draw";
 
@@ -56,8 +57,9 @@ public class Fragment_Draw extends Fragment implements View.OnClickListener {
         super.onActivityCreated(savedInstanceState);
 
         String question = getArguments().getString("g") ;
+        qn = getArguments().getString("questionnumber");
         questionForDraw = (TextView) getActivity().findViewById(R.id.tv_drawfrag);
-        questionForDraw.setText(question);
+        questionForDraw.setText(qn + ". " + question);
 
         //NEW STUFF ADDED -
         smallPencil = getResources().getInteger(R.integer.small_size);
@@ -78,7 +80,6 @@ public class Fragment_Draw extends Fragment implements View.OnClickListener {
 
 //        instantiate this variable by retrieving a reference to it from the layout:
         drawView = (DrawingView) getActivity().findViewById(R.id.drawing);
-
 
         LinearLayout paintLayout = (LinearLayout) getActivity().findViewById(R.id.paint_colors);
         currPaint = (ImageButton)paintLayout.getChildAt(0);
@@ -350,4 +351,7 @@ public class Fragment_Draw extends Fragment implements View.OnClickListener {
                 Toast.LENGTH_LONG).show();
         return mediaFile;
     }
+
+    public int computeHorizontalScrollRange() { return 2000; }
+    public int computeVerticalScrollRange() { return 2000; }
 }

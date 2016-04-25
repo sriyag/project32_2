@@ -19,16 +19,13 @@ public class Email extends Activity implements View.OnClickListener {
 
     String courseName;    //CourseName
     String examNameSelected;  //ExamNameOfCourse
-    String nameOfCandidate;   //name of candidate
+    String nameOfCandidate, stuID;   //name of candidate
     String zipFileName;
 
     EditText editTextEmail, editTextSubject, editTextMessage;
-    Button btnSend, btnAttachment;
-    String email, subject, message, attachmentFile;
+    Button btnSend;
+    String email, subject, message;
     Uri URI = null;
-    private static final int PICK_FROM_GALLERY = 101;
-    int columnIndex;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +35,7 @@ public class Email extends Activity implements View.OnClickListener {
         courseName = getIntent().getExtras().getString("nameOfCourseSelected");
         examNameSelected = getIntent().getExtras().getString("examNameSelected");
         nameOfCandidate = getIntent().getExtras().getString("name_of_candidate");
+        stuID = getIntent().getExtras().getString("student_id");
         zipFileName = getIntent().getExtras().getString("name_of_zipfile");
         editTextEmail = (EditText) findViewById(R.id.emailAddress);
         editTextSubject = (EditText) findViewById(R.id.subject);
@@ -45,8 +43,6 @@ public class Email extends Activity implements View.OnClickListener {
         btnSend = (Button) findViewById(R.id.send);
         btnSend.setOnClickListener(this);
         URI = Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/" + "datastorage_t1_questionpaper"));
-        Toast.makeText(this,URI.toString(),Toast.LENGTH_LONG).show();
-
 
 
     }
@@ -60,19 +56,26 @@ public class Email extends Activity implements View.OnClickListener {
                 subject = editTextSubject.getText().toString();
                 message = editTextMessage.getText().toString();
 
-                try {
-                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                    emailIntent.setType("text/plain");
-                    emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
-                    if (URI != null) {
-                        emailIntent.putExtra(Intent.EXTRA_STREAM, URI);
-                    }
-                    emailIntent.putExtra(Intent.EXTRA_TEXT, message);
-                    this.startActivity(Intent.createChooser(emailIntent, "Sending email..."));
+                if (email.length() == 0 || subject.length() == 0) {
+                    Toast.makeText(getApplicationContext(), "Enter email id or subject!", Toast
+                            .LENGTH_SHORT).show();
                 }
-                catch(Throwable t) {
-                    Toast.makeText(this,"Request failed try again: " + t.toString(), Toast.LENGTH_LONG).show();
+
+                else {
+
+                    try {
+                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                        emailIntent.setType("text/plain");
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                        if (URI != null) {
+                            emailIntent.putExtra(Intent.EXTRA_STREAM, URI);
+                        }
+                        emailIntent.putExtra(Intent.EXTRA_TEXT, message);
+                        this.startActivity(Intent.createChooser(emailIntent, "Sending email..."));
+                    } catch (Throwable t) {
+                        Toast.makeText(this, "Request failed try again: " + t.toString(), Toast.LENGTH_LONG).show();
+                    }
                 }
                 break;
 

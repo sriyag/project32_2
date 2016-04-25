@@ -15,7 +15,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Zip And Email"
+        android:text="Zip And Share"
         android:id="@+id/zip_email"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"

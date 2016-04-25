@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Import Exam"
+            android:id="@+id/btnChooseExam"
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chosen Exam File"
+            android:id="@+id/tvChosenExam"
+            android:layout_marginLeft="10dp"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnPopulateLv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignLeft="@+id/lvAvlbExams"
+            android:text="Populate List with Available Exams"
+            />
+
+    <ListView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvAvlbExams"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btnPopulateLv"
+        android:layout_marginTop="5dp"
+        />
+
+    </RelativeLayout>
+
+</LinearLayout>

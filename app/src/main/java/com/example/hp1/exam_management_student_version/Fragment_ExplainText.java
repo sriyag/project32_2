@@ -53,7 +53,7 @@ public class Fragment_ExplainText extends Fragment implements View.OnClickListen
         String f = getArguments().getString("f");
         qn = getArguments().getString("questionnumber");
         explainQuestion.setText(f);
-        question_number.setText(qn);
+        question_number.setText(qn + ". ");
         return view;
     }
 
@@ -66,7 +66,6 @@ public class Fragment_ExplainText extends Fragment implements View.OnClickListen
     public void onClick(View v) {
         typedAnswer = explainAnswer.getText().toString();
         String filepath = Environment.getExternalStorageDirectory() + "/" + "datastorage_t1_questionpaper";
-        Toast.makeText(getActivity(), filepath.toString(), Toast.LENGTH_LONG).show();
         File file = new File(filepath);
         DocumentBuilder dbuilder = null;
         try {
@@ -76,14 +75,14 @@ public class Fragment_ExplainText extends Fragment implements View.OnClickListen
             Element element = document.getDocumentElement();
             NodeList questions_list = document.getElementsByTagName("question");   //tags with question
             Node particular_question = questions_list.item(Integer.parseInt(qn) - 1);
-            Toast.makeText(getActivity(), qn, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), qn, Toast.LENGTH_SHORT).show();
             NodeList attributes = particular_question.getChildNodes();
             for (int i = 0; i < attributes.getLength(); i++) {
                 Node temp = attributes.item(i);
                 if (temp.getNodeName().equalsIgnoreCase("answer")) {
                     if (typedAnswer != null && typedAnswer.length() > 0) {
                         temp.setTextContent(typedAnswer);
-                        Toast.makeText(getActivity(), "writing" + typedAnswer, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "writing" + typedAnswer, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
