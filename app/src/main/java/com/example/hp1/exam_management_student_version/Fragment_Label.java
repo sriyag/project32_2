@@ -31,9 +31,6 @@ public class Fragment_Label extends Fragment {
     private EditText et1;
     String qn;
 
-  /*  private final String imageInSD = Environment.getExternalStorageDirectory()
-            + "/Android/data/com.example.sriyag" +
-            ".examapp_student/Files/Img_5041" + ".png";*/
     private final String imageInSD = Environment.getExternalStorageDirectory()
             + "/skeleton2.png";
 
@@ -42,7 +39,7 @@ public class Fragment_Label extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-        return inflater.inflate(R.layout.frag_label_with_et, container, false);
+        return inflater.inflate(R.layout.fragment_label, container, false);
     }
 
     @Override

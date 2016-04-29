@@ -32,7 +32,6 @@ public class AvailableExams extends Activity implements AdapterView.OnItemClickL
     private Button btnChooseExam, btnPopulateLv;
     private TextView tvChosenExam;
     private static final int FILE_SELECT_CODE = 0;
-    private static final int FILE_SELECT_CODE2 = 2;
     private String path;
     String course, exam;
     String student_name, student_id;
@@ -44,6 +43,7 @@ public class AvailableExams extends Activity implements AdapterView.OnItemClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.avlb_exams);
 
+        //Retrieve data from the previous activity
         Intent iGet = getIntent();
         student_name = iGet.getExtras().getString("student_name");
         student_id = iGet.getExtras().getString("student_id");
@@ -54,16 +54,12 @@ public class AvailableExams extends Activity implements AdapterView.OnItemClickL
 
         arrList=new ArrayList<String>();
 
-
         btnChooseExam = (Button) findViewById(R.id.btnChooseExam);
         btnPopulateLv = (Button) findViewById(R.id.btnPopulateLv);
         tvChosenExam = (TextView) findViewById(R.id.tvChosenExam);
 
-
-        //Get course and exam from button: chosen file from file explorer!!!!!!
         course = "datastorage";
         exam = "t1";
-
 
         btnChooseExam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,17 +68,15 @@ public class AvailableExams extends Activity implements AdapterView.OnItemClickL
             }
         });
 
-
         btnPopulateLv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String path = Environment.getExternalStorageDirectory() + "/Exams/";
 
+                //Getting list of files from a directory stored in the internal storage
                 try {
                     File f = new File(path);
-//                    File file[] = f.listFiles();
-
                     String[] files = f.list();
 
 
@@ -136,7 +130,6 @@ public class AvailableExams extends Activity implements AdapterView.OnItemClickL
                     Intent.createChooser(intent, "Select an exam file"),
                     FILE_SELECT_CODE);
         } catch (android.content.ActivityNotFoundException ex) {
-            // Potentially direct the user to the Market with a Dialog
             Toast.makeText(this, "Please install a File Manager.",
                     Toast.LENGTH_SHORT).show();
         }
@@ -149,13 +142,11 @@ public class AvailableExams extends Activity implements AdapterView.OnItemClickL
                 if (resultCode == RESULT_OK) {
                     // Get the Uri of the selected file
                     Uri uri = data.getData();
-                    /*Toast.makeText(getApplicationContext(), "File chosen: " + uri.toString(), Toast
-                            .LENGTH_SHORT).show();*/
                     tvChosenExam.setText(uri.toString());
                     examName = tvChosenExam.getText().toString();
 
 
-                    // Get the path
+                    // Get the file path
                     try {
                         path = getPath(this, uri);
                     } catch (Exception e) {
@@ -163,9 +154,6 @@ public class AvailableExams extends Activity implements AdapterView.OnItemClickL
                     }
                     Toast.makeText(getApplicationContext(), "File Path: " + path, Toast
                             .LENGTH_SHORT).show();
-                    // Get the file instance
-                    // File file = new File(path);
-                    // Initiate the upload
                 }
                 break;
 
@@ -185,7 +173,6 @@ public class AvailableExams extends Activity implements AdapterView.OnItemClickL
                     return cursor.getString(column_index);
                 }
             } catch (Exception e) {
-                // Eat it
             }
         }
         else if ("file".equalsIgnoreCase(uri.getScheme())) {

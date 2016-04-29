@@ -94,7 +94,6 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
         questionPaperFileName = courseName.concat("_").concat(examNameSelected).concat("_questionpaper");
 
         numberOfQuestions = findNumberOfQuestions(questionPaperFileName);   //to get number of questions
-//        Toast.makeText(this, "" + numberOfQuestions, Toast.LENGTH_SHORT).show();
 
         title = (TextView) findViewById(R.id.titleTop);
         title.setText(courseName.concat("-").concat(examNameSelected));
@@ -116,8 +115,6 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
             }
 
             public void onFinish() {
-                //After 180000 milliseconds finish current
-                //if you would like to execute something when time finishes
                 Toast.makeText(getApplicationContext(), "Time up!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SeeQuestionPaper.this, FinishExam.class));
             }
@@ -187,7 +184,6 @@ public class SeeQuestionPaper extends Activity implements AdapterView.OnItemClic
                     for (j = 0; j < current_children_childnodes.getLength(); j++) {
                         current_item = current_children_childnodes.item(j);
                         if (current_item.getNodeName().equalsIgnoreCase("tag")) {
-                            //Log.e("checking",current_item.getNodeName().toString()) ;
                             tagOfQuestion = current_item.getTextContent().toString();
                             break;
                         }
